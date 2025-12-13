@@ -1,0 +1,41 @@
+"""
+https://app.codility.com/programmers/lessons/4-counting_elements/perm_check/
+  
+Given a non-empty array A consisting of N integers.
+A permutation is a sequence that contains each number from 1 to N exactly once.
+The function returns 1 if A is a permutation, otherwise returns 0.
+"""
+
+### code1
+def solution(A):
+    N = len(A)
+    check = [0] * N
+
+    for i in range(N):
+        x = A[i]
+        if 1 <= x <= N:
+            check[x - 1] = 1
+        else:
+            return 0
+
+    for count in check:
+        if count != 1:
+            return 0
+
+    return 1
+
+
+### code2
+def solution(A):
+    N = len(A)
+    check = [0] * N
+
+    for x in A:
+        if x < 1 or x > N:
+            return 0
+        if check[x - 1] == 1:
+            return 0
+        check[x - 1] = 1
+
+    return 1
+
